@@ -1,0 +1,36 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "f58166f8540cc77f7f35173ca74a883c"
+name = "customer-syncing-tool"
+handle = "customer-syncing-tool"
+application_url = "https://imaging-app-bleeding-fisher.trycloudflare.com"
+embedded = true
+
+[build]
+include_config_on_deploy = true
+automatically_update_urls_on_dev = true
+
+[webhooks]
+api_version = "2025-07"
+
+  [[webhooks.subscriptions]]
+  topics = [ "app/uninstalled" ]
+  uri = "/webhooks/app/uninstalled"
+
+  [[webhooks.subscriptions]]
+  topics = [ "app/scopes_update" ]
+  uri = "/webhooks/app/scopes_update"
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "write_products,read_products,read_customers,write_customers"
+
+[auth]
+redirect_urls = [
+  "https://imaging-app-bleeding-fisher.trycloudflare.com/auth/callback",
+  "https://imaging-app-bleeding-fisher.trycloudflare.com/auth/shopify/callback",
+  "https://imaging-app-bleeding-fisher.trycloudflare.com/api/auth/callback"
+]
+
+[pos]
+embedded = false
